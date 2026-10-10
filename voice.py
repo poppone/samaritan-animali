@@ -34,7 +34,7 @@ def pulisci_testo(testo):
     t = re.sub(r"#\w+", " ", t)          # hashtag: non vanno letti
     t = re.sub(r"[*_`>\[\]()]", " ", t)  # residui markdown
     t = t.replace("...", ".").replace("…", ".")
-    t = t.replace("-", " ").replace("—", " ").replace("–", " ")
+    t = t.replace("-", " ").replace("—", " ").replace("–", " ").replace("‑", " ")
     t = re.sub(r"\s+", " ", t)
     t = re.sub(r"\s+([,.!?;:])", r"\1", t)
     return t.strip()

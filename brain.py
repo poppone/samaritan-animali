@@ -286,7 +286,7 @@ def genera_script_zampaviva(richiesto=None):
                                               ultimi_titoli)
     risultato = None
 
-    for modello in ["llama-3.3-70b-versatile", "llama-3.1-8b-instant"]:
+    for modello in config.GROQ_MODELLI:
         for tentativo in range(1, 3):
             try:
                 print(f"[ZampaViva Brain] {modello} - tentativo {tentativo}...")
@@ -297,7 +297,8 @@ def genera_script_zampaviva(richiesto=None):
                         {"role": "user", "content": "Scrivi il video di oggi."},
                     ],
                     temperature=0.9,
-                    max_tokens=800,
+                    # i modelli gpt-oss ragionano prima di rispondere: serve margine
+                    max_tokens=3000,
                     response_format={"type": "json_object"},
                 )
                 contenuto = response.choices[0].message.content

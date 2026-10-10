@@ -36,6 +36,11 @@ def _get(nome, default=None, obbligatoria=False):
 
 # ---------------------------------------------------------------- API esterne
 GROQ_API_KEY = _get("GROQ_API_KEY", obbligatoria=True)
+# Modelli provati in ordine. Groq ritira spesso i modelli: se uno sparisce,
+# aggiorna questa lista (o la variabile GROQ_MODELLI, separata da virgole).
+GROQ_MODELLI = [m.strip() for m in _get(
+    "GROQ_MODELLI", "openai/gpt-oss-120b,qwen/qwen3.8-27b,openai/gpt-oss-20b"
+).split(",") if m.strip()]
 # Opzionale: senza, il video usa solo le foto del prodotto
 PEXELS_API_KEY = _get("PEXELS_API_KEY")
 

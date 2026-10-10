@@ -1,10 +1,18 @@
 [
   {
-    "timestamp": 1791534558,
-    "data": "2026-10-09",
-    "handle": "cuccia-donut-calmante-in-peluche",
-    "titolo": "Cuccia Donut calmante in peluche 🐾",
-    "estratto_script": "Lo sai cosa renderebbe felice il tuo amico a quattro zampe oggi? Si chiama Cuccia Donut ca",
-    "stile": "PROBLEMA_SOLUZIONE"
+    "timestamp": 1791642958,
+    "data": "2026-10-10",
+    "handle": "spazzola-angolare-auto-grattante-con-erba-gatta",
+    "titolo": "Peli sul divano? 🐾",
+    "estratto_script": "Il tuo gatto lascia peli sul divano dopo ogni sonnellino? Prova la spazzola angolare auto‑",
+    "stile": "DOMANDA_AL_PUBBLICO"
+  },
+  {
+    "timestamp": 1791642991,
+    "data": "2026-10-10",
+    "handle": "tappetino-raccogli-lettiera-a-doppio-strato",
+    "titolo": "Addio sabbia sparsa! 🐾",
+    "estratto_script": "Il tuo gatto sparge sabbia ovunque? Prima il pavimento era una tempesta di granelli. Il tu",
+    "stile": "PRIMA_DOPO"
   }
 ]
