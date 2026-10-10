@@ -45,6 +45,9 @@ MIN_PAROLE_SCRIPT = 45
 MAX_PAROLE_SCRIPT = 95
 MIN_HASHTAG, MAX_HASHTAG = 3, 5
 
+# Chiusura fissa di ogni video
+FRASE_FINALE = "Trovi il negozio nel profilo!"
+
 
 # ============================================================== CATALOGO
 def _testo_da_html(contenuto):
@@ -192,9 +195,20 @@ def valida_script(titolo, script):
         return False, f"script troppo corto ({n_parole} parole)"
     if n_parole > MAX_PAROLE_SCRIPT:
         return False, f"script troppo lungo ({n_parole} parole)"
-    if "bio" not in script.lower():
-        return False, "manca l'invito al link in bio"
     return True, ""
+
+
+def aggiungi_frase_finale(script):
+    """Chiude sempre con la stessa frase: il negozio e' nel profilo.
+
+    La aggiunge il codice e non il modello, cosi' e' identica in ogni video.
+    Se il modello ha comunque scritto un suo invito ('link in bio',
+    'nel profilo'), quella frase viene tolta per non ripeterla.
+    """
+    frasi = re.split(r"(?<=[.!?])\s+", script.strip())
+    frasi = [f for f in frasi
+             if not re.search(r"link in bio|nel (mio |nostro )?profilo", f, re.I)]
+    return " ".join(frasi + [FRASE_FINALE])
 
 
 def componi_didascalia(dati):
@@ -230,10 +244,11 @@ def _costruisci_system_prompt(formato, prodotto, animale, ultimi_titoli):
         "con saluti ('Ciao', 'Raga', 'Benvenuti', 'Oggi vi parlo'). Inizia con una "
         "domanda diretta o una scena in cui il padrone si riconosce (es: 'Il tuo "
         "gatto ti sveglia alle 5?').\n"
-        "2. SEAMLESS LOOP: l'ultima frase si ricollega in modo naturale alla prima.\n"
+        "2. CHIUSURA: l'ultima frase richiama in modo naturale la domanda iniziale.\n"
         "3. RITMO: frasi corte, una informazione per frase, niente subordinate.\n"
-        "4. CTA verso la fine: una frase breve che contenga le parole 'link in bio'. "
-        "Mai in apertura.\n"
+        "4. NIENTE INVITO FINALE: non scrivere 'link in bio', 'nel profilo' o "
+        f"simili. La frase '{FRASE_FINALE}' viene aggiunta automaticamente "
+        "dopo il tuo testo.\n"
         "5. TITOLO: testo a schermo, massimo 60 caratteri, UNA emoji, niente hashtag.\n"
         "6. QUERY VIDEO: in INGLESE, 2-4 parole, per clip stock di animali coerenti "
         "(es: 'cat playing ball', 'dog walking leash').\n"
@@ -259,7 +274,7 @@ def _fallback(prodotto, animale, formato):
             f"Si chiama {nome}, e l'abbiamo scelto pensando proprio a lui. "
             "E' fatto per la vita di tutti i giorni. "
             "Semplice da usare, bello da vedere. "
-            f"Lo trovi su {config.NOME_NEGOZIO}, al link in bio. "
+            f"Lo trovi su {config.NOME_NEGOZIO}, scelto con amore per lui. "
             f"E adesso dimmi: lo sai cosa renderebbe felice {chi}?"
         ),
         "query_video": {"gatto": "cute cat playing", "cane": "happy dog playing"}
@@ -329,6 +344,7 @@ def genera_script_zampaviva(richiesto=None):
         print("[ZampaViva Brain] Tutti i modelli hanno fallito: uso il fallback.")
         risultato = _fallback(prodotto, animale, formato)
 
+    risultato["script"] = aggiungi_frase_finale(risultato["script"])
     risultato["hashtag"] = pulisci_hashtag(risultato["hashtag"], animale)
     risultato["prodotto"] = prodotto
     risultato["animale"] = animale

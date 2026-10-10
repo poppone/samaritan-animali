@@ -14,5 +14,21 @@
     "titolo": "Addio sabbia sparsa! 🐾",
     "estratto_script": "Il tuo gatto sparge sabbia ovunque? Prima il pavimento era una tempesta di granelli. Il tu",
     "stile": "PRIMA_DOPO"
+  },
+  {
+    "timestamp": 1791644653,
+    "data": "2026-10-10",
+    "handle": "tappetino-raccogli-lettiera-a-doppio-strato",
+    "titolo": "Sabbia sparsa? Scopri il tappetino magico 🐾",
+    "estratto_script": "Il tuo gatto lascia sabbia ovunque dopo la lettiera? È frustrante pulire il pavimento ogni",
+    "stile": "PROBLEMA_SOLUZIONE"
+  },
+  {
+    "timestamp": 1791644720,
+    "data": "2026-10-10",
+    "handle": "tappetino-raccogli-lettiera-a-doppio-strato",
+    "titolo": "Il tuo gatto sparge sabbia ovunque? 🐾",
+    "estratto_script": "Il tuo gatto sparge sabbia ovunque? Il nostro tappetino a doppio strato la raccoglie subit",
+    "stile": "LO_FA_ANCHE_IL_TUO"
   }
 ]

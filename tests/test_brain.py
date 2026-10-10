@@ -38,13 +38,21 @@ class TestValidaScript:
             ok, motivo = brain.valida_script("T", apertura + " " + SCRIPT_BUONO)
             assert not ok and "apertura" in motivo
 
-    def test_rifiuta_senza_link_in_bio(self):
-        ok, motivo = brain.valida_script("T", SCRIPT_BUONO.replace("link in bio", "negozio"))
-        assert not ok and "bio" in motivo
-
     def test_rifiuta_lunghezze_sbagliate(self):
-        assert not brain.valida_script("T", "Corto. link in bio")[0]
-        assert not brain.valida_script("T", "parola " * 120 + "bio")[0]
+        assert not brain.valida_script("T", "Corto.")[0]
+        assert not brain.valida_script("T", "parola " * 120)[0]
+
+
+class TestFraseFinale:
+    def test_chiude_sempre_con_il_profilo(self):
+        finale = brain.aggiungi_frase_finale("Il tuo cane tira? Ecco la soluzione.")
+        assert finale.endswith(brain.FRASE_FINALE)
+
+    def test_toglie_gli_inviti_scritti_dal_modello(self):
+        finale = brain.aggiungi_frase_finale(SCRIPT_BUONO)
+        assert "link in bio" not in finale
+        assert finale.count("profilo") == 1
+        assert "piccione?" in finale
 
 
 class TestCatalogo:

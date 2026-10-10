@@ -11,6 +11,7 @@ l'hook dei primi 3 secondi "suona" davvero come un hook.
 import os
 import re
 import asyncio
+import time
 
 import config
 
@@ -64,18 +65,24 @@ def genera_voce_samaritan(testo, output_filename=None):
         return None
 
     # --- Tentativo 1: Edge-TTS (voce neurale) ---
-    try:
-        print(f"[Samaritan Voice] Sintesi neurale con {config.VOCE_TTS} "
-              f"(velocita {config.VOCE_VELOCITA})...")
-        asyncio.run(_sintetizza_edge(testo_pulito, output_filename))
+    # Il servizio Microsoft a volte risponde 403 per qualche secondo:
+    # meglio riprovare che ripiegare subito sulla voce robotica.
+    for tentativo in range(1, 5):
+        try:
+            print(f"[Samaritan Voice] Sintesi neurale con {config.VOCE_TTS} "
+                  f"(velocita {config.VOCE_VELOCITA}), tentativo {tentativo}...")
+            asyncio.run(_sintetizza_edge(testo_pulito, output_filename))
 
-        if os.path.exists(output_filename) and os.path.getsize(output_filename) > 1024:
-            print(f"[Samaritan Voice] Audio neurale salvato: {output_filename}")
-            return output_filename
-        raise RuntimeError("Edge-TTS ha prodotto un file vuoto")
+            if os.path.exists(output_filename) and os.path.getsize(output_filename) > 1024:
+                print(f"[Samaritan Voice] Audio neurale salvato: {output_filename}")
+                return output_filename
+            raise RuntimeError("Edge-TTS ha prodotto un file vuoto")
 
-    except Exception as e:
-        print(f"[Warning Voice] Edge-TTS non disponibile ({e}). Passo al fallback gTTS.")
+        except Exception as e:
+            print(f"[Warning Voice] Edge-TTS non disponibile ({str(e)[:80]}).")
+            time.sleep(5 * tentativo)
+
+    print("[Warning Voice] Edge-TTS fallito 4 volte: passo al fallback gTTS.")
 
     # --- Tentativo 2: gTTS (fallback robotico) ---
     try:
