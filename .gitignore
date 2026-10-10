@@ -1,0 +1,14 @@
+# === SEGRETI - non committare MAI ===
+.env
+*.pickle
+
+# === Artefatti generati ===
+temp_assets/
+output_videos/
+*.mp4
+*.mp3
+*.wav
+
+__pycache__/
+*.py[cod]
+.venv/

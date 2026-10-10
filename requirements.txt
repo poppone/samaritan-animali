@@ -1,0 +1,11 @@
+groq>=1.7,<2
+requests>=2.32,<3
+python-dotenv>=1.2,<2
+
+edge-tts>=7.2,<8
+gTTS>=2.5,<3
+openai-whisper==20250625
+
+moviepy>=2.2,<3
+Pillow>=11,<12          # tetto imposto da moviepy 2.x (pillow<12)
+numpy>=2.4,<3
