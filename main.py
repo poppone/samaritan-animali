@@ -16,9 +16,10 @@ import os
 import traceback
 
 import config
-from brain import genera_script_zampaviva, componi_didascalia
+from brain import genera_script_zampaviva, componi_didascalia, aggiorna_ultima_voce
 from maker import assembla_video_finale
 import notifier
+import copia_pubblica
 
 
 def esegui_pipeline(richiesto=None):
@@ -59,6 +60,9 @@ def esegui_pipeline(richiesto=None):
     # --------------------------------------------------- FASE 3: Consegna
     print("\n[FASE 3/3] Invio su Telegram...")
     consegnato = notifier.notifica_video(dati, video_path, didascalia)
+
+    # copia pubblica per la stanza degli agenti (solo se c'e' il token Blob)
+    aggiorna_ultima_voce(copia_pubblica.prepara(video_path, dati, didascalia))
 
     print("=" * 62)
     print(f"VIDEO PRONTO -> {video_path}")

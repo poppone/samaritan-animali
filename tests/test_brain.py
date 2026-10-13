@@ -108,9 +108,9 @@ class TestHashtag:
 
     def test_didascalia_con_link(self):
         dati = {"didascalia": "Lo vuoi?", "hashtag": ["#cane", "#animalidomestici"],
-                "prodotto": {"url": "https://zampaviva-5.myshopify.com/products/x"}}
+                "prodotto": {"handle": "x", "url": "https://zampavivaoff.myshopify.com/products/x"}}
         testo = brain.componi_didascalia(dati)
-        assert testo.endswith("https://zampaviva-5.myshopify.com/products/x")
+        assert "https://zampavivaoff.myshopify.com/products/x?utm_source=tiktok" in testo
         assert "#cane #animalidomestici" in testo
 
 
@@ -121,3 +121,48 @@ class TestMontaggio:
         ordinate = maker.ordina_sorgenti(sorgenti)
         assert [s["tipo"] for s in ordinate] == ["video", "immagine"] * 3
         assert ordinate[1]["path"] == "i0"
+
+
+class TestDidascalia:
+    DATI = {
+        "didascalia": "Passeggiate senza strattoni ",
+        "hashtag": ["#cane", "#zampaviva"],
+        "prodotto": {"handle": "pettorina", "url": "https://negozio/products/pettorina"},
+    }
+
+    def test_link_con_utm_tiktok(self, monkeypatch):
+        monkeypatch.setattr(brain.config, "CODICE_SCONTO", "")
+        testo = brain.componi_didascalia(self.DATI)
+        assert testo.endswith("https://negozio/products/pettorina"
+                              "?utm_source=tiktok&utm_medium=video&utm_campaign=pettorina")
+        assert "codice" not in testo.lower()
+
+    def test_codice_sconto_valido(self, monkeypatch):
+        monkeypatch.setattr(brain.config, "CODICE_SCONTO", "BENVENUTO10")
+        monkeypatch.setattr(brain.config, "CODICE_SCONTO_SCADENZA", "2026-12-12")
+        testo = brain.componi_didascalia(self.DATI, oggi="2026-10-13")
+        assert "Usa il codice BENVENUTO10 al checkout" in testo
+
+    def test_codice_sconto_scaduto_sparisce(self, monkeypatch):
+        monkeypatch.setattr(brain.config, "CODICE_SCONTO", "BENVENUTO10")
+        monkeypatch.setattr(brain.config, "CODICE_SCONTO_SCADENZA", "2026-12-12")
+        testo = brain.componi_didascalia(self.DATI, oggi="2026-12-13")
+        assert "BENVENUTO10" not in testo
+
+
+class TestAggiornaUltimaVoce:
+    def test_aggiunge_campi_all_ultima(self, tmp_path, monkeypatch):
+        import json
+        f = tmp_path / "cron.json"
+        f.write_text(json.dumps([{"handle": "a"}, {"handle": "b"}]), encoding="utf-8")
+        monkeypatch.setattr(brain.config, "FILE_CRONOLOGIA", str(f))
+        brain.aggiorna_ultima_voce({"video_file_url": "https://blob/x.mp4"})
+        dati = json.loads(f.read_text(encoding="utf-8"))
+        assert dati[-1] == {"handle": "b", "video_file_url": "https://blob/x.mp4"}
+        assert "video_file_url" not in dati[0]
+
+    def test_niente_campi_niente_scrittura(self, tmp_path, monkeypatch):
+        f = tmp_path / "cron.json"
+        monkeypatch.setattr(brain.config, "FILE_CRONOLOGIA", str(f))
+        brain.aggiorna_ultima_voce({})
+        assert not f.exists()
