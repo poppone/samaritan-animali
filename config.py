@@ -46,7 +46,11 @@ PEXELS_API_KEY = _get("PEXELS_API_KEY")
 
 # ------------------------------------------------------------------- Negozio
 NOME_NEGOZIO = _get("NOME_NEGOZIO", "ZampaViva")
-URL_NEGOZIO = _get("URL_NEGOZIO", "https://zampaviva-5.myshopify.com").rstrip("/")
+URL_NEGOZIO = _get("URL_NEGOZIO", "https://zampavivaoff.myshopify.com").rstrip("/")
+# Codice sconto da citare nella didascalia, con la sua scadenza (AAAA-MM-GG):
+# dopo quella data non compare piu'. Vuoto = nessun codice.
+CODICE_SCONTO = _get("CODICE_SCONTO", "")
+CODICE_SCONTO_SCADENZA = _get("CODICE_SCONTO_SCADENZA", "")
 LINGUA = _get("LINGUA", "it")
 
 # ------------------------------------------------------------------ Voce (TTS)
@@ -77,6 +81,12 @@ ZOOM_PRODOTTO = float(_get("ZOOM_PRODOTTO", "0.92"))
 TELEGRAM_BOT_TOKEN = _get("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = _get("TELEGRAM_CHAT_ID")
 TELEGRAM_ATTIVO = bool(TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID)
+
+# ------------------------------------------- Copia pubblica (Vercel Blob)
+# Facoltativo: se c'e', il video si carica su Vercel Blob e l'indirizzo
+# finisce in cronologia, cosi' la stanza degli agenti puo' programmarlo su
+# TikTok. Vuoto = niente copia.
+BLOB_READ_WRITE_TOKEN = _get("BLOB_READ_WRITE_TOKEN")
 
 # ---------------------------------------------------------------------- File
 FILE_CRONOLOGIA = os.path.join(DIR_PROGETTO, "cronologia_zampaviva.json")

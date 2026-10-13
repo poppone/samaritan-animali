@@ -12,6 +12,17 @@ FASE 2  media.py     foto del prodotto (Shopify) + clip di cani e gatti (Pexels)
 FASE 3  notifier.py  video + didascalia su Telegram
 ```
 
+## In cloud (GitHub Actions)
+
+`.github/workflows/zampaviva.yml` fa un video ogni mattina, senza il PC acceso.
+Il video arriva su Telegram come prima e la cronologia si salva da sola.
+Secrets del repository (Settings > Secrets and variables > Actions):
+`GROQ_API_KEY`, `PEXELS_API_KEY`, `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID`
+(gli stessi valori del file `.env`) e, facoltativo, `BLOB_READ_WRITE_TOKEN`:
+con quello il video si carica anche su Vercel Blob (`copia_pubblica.py`) e la
+stanza degli agenti puo' proporlo per TikTok.
+Si lancia anche a mano da Actions > ZampaViva TikTok > Run workflow.
+
 ## Configurazione
 
 Le chiavi NON stanno in questa cartella. Crea `C:\Users\<utente>\.zampaviva\.env`

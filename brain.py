@@ -211,11 +211,45 @@ def aggiungi_frase_finale(script):
     return " ".join(frasi + [FRASE_FINALE])
 
 
-def componi_didascalia(dati):
-    """Didascalia TikTok pronta da copiare: testo + hashtag + link prodotto."""
-    return (f"{dati['didascalia'].strip()}\n\n"
-            f"{' '.join(dati['hashtag'])}\n\n"
-            f"{dati['prodotto']['url']}")
+def link_tracciato(prodotto, fonte="tiktok"):
+    """Link del prodotto con i parametri UTM: Shopify conta da dove arriva chi compra."""
+    return (f"{prodotto['url']}?utm_source={fonte}&utm_medium=video"
+            f"&utm_campaign={prodotto['handle']}")
+
+
+def riga_codice_sconto(oggi=None):
+    """La riga del codice sconto, o "" se non c'e' o e' scaduto."""
+    codice = (config.CODICE_SCONTO or "").strip()
+    if not codice:
+        return ""
+    scadenza = (config.CODICE_SCONTO_SCADENZA or "").strip()
+    oggi = oggi or time.strftime("%Y-%m-%d")
+    if scadenza and oggi > scadenza:
+        return ""
+    return f"Usa il codice {codice} al checkout"
+
+
+def componi_didascalia(dati, oggi=None):
+    """Didascalia TikTok pronta da copiare: testo, codice sconto, hashtag, link."""
+    parti = [dati['didascalia'].strip()]
+    codice = riga_codice_sconto(oggi)
+    if codice:
+        parti.append(codice)
+    parti.append(' '.join(dati['hashtag']))
+    parti.append(link_tracciato(dati['prodotto']))
+    return "\n\n".join(parti)
+
+
+def aggiorna_ultima_voce(campi):
+    """Aggiunge campi (es. video_file_url) all'ultima voce della cronologia."""
+    if not campi:
+        return
+    cronologia = carica_cronologia()
+    if not cronologia:
+        return
+    cronologia[-1].update(campi)
+    with open(config.FILE_CRONOLOGIA, "w", encoding="utf-8") as f:
+        json.dump(cronologia[-300:], f, ensure_ascii=False, indent=2)
 
 
 # ============================================================= GENERAZIONE
