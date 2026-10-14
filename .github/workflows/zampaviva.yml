@@ -1,6 +1,6 @@
 name: ZampaViva TikTok
 
-# Un video al giorno, in cloud: prima girava solo dal PC di Davide
+# Due video al giorno (dal 14/10/2026), in cloud: prima girava solo dal PC di Davide
 # (run_zampaviva.bat). Il video arriva su Telegram con la didascalia pronta,
 # come prima; in piu', se c'e' BLOB_READ_WRITE_TOKEN, una copia pubblica
 # finisce in cronologia e la stanza degli agenti puo' proporla a Davide per
@@ -12,6 +12,7 @@ on:
     # un orario di pubblicazione, solo "una volta al mattino". Minuto 23 per
     # evitare lo scoccare dell'ora, quando GitHub e' piu' carico.
     - cron: '23 5 * * *'          # circa 7:23 italiane (ora legale)
+    - cron: '23 15 * * *'         # circa 17:23: secondo video, prodotto diverso (rotazione)
   workflow_dispatch:
     inputs:
       prodotto:
