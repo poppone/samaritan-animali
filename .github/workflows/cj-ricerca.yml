@@ -1,0 +1,45 @@
+name: Ricerca CJ
+
+# Cerca prodotti su CJ (prezzo, magazzino, spedizione verso l'Italia) e
+# salva cj/risultati.md. Parte a mano o quando cambia cj/richieste.txt.
+
+on:
+  workflow_dispatch:
+    inputs:
+      ricerche:
+        description: 'Parole chiave separate da ";" (vuoto = cj/richieste.txt)'
+        required: false
+        default: ''
+  push:
+    branches: [main]
+    paths: ['cj/richieste.txt']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: cj-ricerca
+  cancel-in-progress: false
+
+jobs:
+  ricerca:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install "requests>=2.32,<3"
+      - name: Ricerca
+        env:
+          CJ_API_KEY: ${{ secrets.CJ_API_KEY }}
+          RICERCHE: ${{ github.event.inputs.ricerche }}
+        run: python cj_ricerca.py
+      - name: Salva risultati
+        run: |
+          git config user.name "finch-bot"
+          git config user.email "finch-bot@users.noreply.github.com"
+          git add cj/risultati.md cj/risultati.json
+          git diff --cached --quiet || git commit -m "Ricerca CJ [skip ci]"
+          git pull --rebase origin main && git push
