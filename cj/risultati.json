@@ -1,50 +1,5 @@
 [
  {
-  "ricerca": "cat water fountain",
-  "nome": "8Pcs Stainless Steel Pet Water Fountain Filters | Pet Water Fountain Filters 8-Pack Replacement Filters With 4 Sponge Filters For Stainless Steel Cat Dog",
-  "pid": "2032010035622998017",
-  "sku": "CJSD2785252",
-  "magazzino": "DE",
-  "costo_usd": 11.94,
-  "peso_g": 64.0,
-  "varianti": 1,
-  "spedizione": {
-   "errore": "nessuna tariffa"
-  },
-  "immagine": "https://cf.cjdropshipping.com/17732736/555ab9f1-619e-4e9c-8a4b-3afab4edc33c.jpg",
-  "inventario": []
- },
- {
-  "ricerca": "cat water fountain",
-  "nome": "3.78L Pet Water Fountain Dual Dome Cat Water Dispenser With 3 Layer Maifan Stone Filter Ultra Quiet Pump",
-  "pid": "2089901687359954946",
-  "sku": "CJDT3073410",
-  "magazzino": "DE",
-  "costo_usd": 24.0,
-  "peso_g": 1060.0,
-  "varianti": 1,
-  "spedizione": {
-   "errore": "nessuna tariffa"
-  },
-  "immagine": "https://cf.cjdropshipping.com/8e765e3e-7ad1-4a10-9bbf-a7829f3de0d9.jpg",
-  "inventario": []
- },
- {
-  "ricerca": "cat water fountain",
-  "nome": "  Cascade Fountain Hand Water Pump Design",
-  "pid": "1990703045280321537",
-  "sku": "CJZS2603533",
-  "magazzino": "DE",
-  "costo_usd": 43.37,
-  "peso_g": 1270.0,
-  "varianti": 1,
-  "spedizione": {
-   "errore": "nessuna tariffa"
-  },
-  "immagine": "https://cf.cjdropshipping.com/17634240/82766dea-46d0-4190-ad96-5bd5aa385280.jpg",
-  "inventario": []
- },
- {
   "ricerca": "dog hair clipper",
   "nome": "Professional Dog Clipper For Dogs And Cats, Quiet Hair Trimmer, Rechargeable Cordless Pet Clipper MRW250803B",
   "pid": "2077973107818389505",
@@ -54,115 +9,123 @@
   "peso_g": 470.0,
   "varianti": 1,
   "spedizione": {
-   "errore": "nessuna tariffa"
+   "errore": "DE: nessuna tariffa; CN: nessuna tariffa"
   },
   "immagine": "https://cf.cjdropshipping.com/17842464/3cab1239-f316-43e9-9533-8f4bbf549734.jpg",
-  "inventario": []
+  "scorte": {
+   "DE": 6
+  }
  },
  {
   "ricerca": "dog hair clipper",
-  "nome": "Hair Clipper Beard Shaver Trimmer Professional Hair Clipper Clipper Hair Battery",
-  "pid": "2109564640070516737",
-  "sku": "CJDD3248332",
-  "magazzino": "DE",
-  "costo_usd": 14.0,
-  "peso_g": 300.0,
-  "varianti": 1,
+  "nome": "Bodaner Factory Direct Sales Pet Hair Clipper Dog Hair Clipper Haircut Professional Pet Clipper Hair Clipper",
+  "pid": "1369110275877376000",
+  "sku": "CJGR1035306",
+  "magazzino": "CN",
+  "costo_usd": 4.53,
+  "peso_g": 350.0,
+  "varianti": 5,
   "spedizione": {
-   "errore": "nessuna tariffa"
+   "da": "CN",
+   "corriere": "CJPacket Liquid Line",
+   "prezzo_usd": 8.92,
+   "giorni": "8-10"
   },
-  "immagine": "https://cf.cjdropshipping.com/c7db33b1-a100-492c-a871-415c06359ea1.jpg",
-  "inventario": []
+  "immagine": "https://cf.cjdropshipping.com/1615256032512.jpg",
+  "scorte": {
+   "CN": 40000
+  }
  },
  {
   "ricerca": "dog hair clipper",
-  "nome": "Hair Clipper Professional Hair Trimmer Beard Trimmer Shaver Clipper Battery NEW",
-  "pid": "2109562744141692929",
-  "sku": "CJDD3248253",
-  "magazzino": "DE",
-  "costo_usd": 14.0,
-  "peso_g": 222.0,
-  "varianti": 1,
+  "nome": "Dog Hair Clipper Pet Hair Shaver",
+  "pid": "7B3FB069-5193-4D42-B177-35EE4AE1E95F",
+  "sku": "CJJJCWGY00795",
+  "magazzino": "CN",
+  "costo_usd": 9.31,
+  "peso_g": 440.0,
+  "varianti": 10,
   "spedizione": {
-   "errore": "nessuna tariffa"
+   "da": "CN",
+   "corriere": "CJPacket Liquid Line",
+   "prezzo_usd": 9.98,
+   "giorni": "8-10"
   },
-  "immagine": "https://cf.cjdropshipping.com/e5320bba-2e03-46a9-902e-0898d0b9bda5.jpg",
-  "inventario": []
+  "immagine": "https://cf.cjdropshipping.com/2046/2566309086383.jpg",
+  "scorte": {
+   "CN": 31078
+  }
  },
  {
   "ricerca": "dog car seat cover hammock",
-  "nome": "1 Hamster Tent Hammock Set, Light Pink, With 3 Carabiner Hooks And A Storage Bag—Small Animal Cage Party Accessory Set",
-  "pid": "2087028381999087618",
-  "sku": "CJPH3051075",
-  "magazzino": "DE",
-  "costo_usd": 4.16,
-  "peso_g": 113.0,
+  "nome": "Dog Car Seat Cover For Back Seat, Waterproof Scratch Proof Nonslip Seat Cover,Duty Scratch Soft Dog Hammock For Car For Cars Trucks And SUVs Black",
+  "pid": "2072221345166172161",
+  "sku": "CJCM2962625",
+  "magazzino": "CN",
+  "costo_usd": 10.96,
+  "peso_g": 1300.0,
   "varianti": 1,
   "spedizione": {
-   "errore": "nessuna tariffa"
+   "da": "CN",
+   "corriere": "YunExpress Ordinary",
+   "prezzo_usd": 16.32,
+   "giorni": "8-15"
   },
-  "immagine": "https://cf.cjdropshipping.com/17864064/0e887ca5-5a6b-4f20-b68a-10a23e32e836.jpg",
-  "inventario": []
+  "immagine": "https://cf.cjdropshipping.com/e3cdd477-9312-4d1e-a5a7-2e9cb54203bc.jpg",
+  "scorte": {
+   "CN": 13884
+  }
  },
  {
   "ricerca": "dog car seat cover hammock",
-  "nome": "Pet Hammock, Rodent Tent, Hamster Bed, Small Animal Bed, Rat Sleeping Bag, Ferret Bed, Guinea Pig Bed, Small Animal Beds, Cages, Decorations, Accessories",
-  "pid": "2074743346664554498",
-  "sku": "CJPH2973492",
-  "magazzino": "DE",
-  "costo_usd": 4.16,
-  "peso_g": 113.0,
+  "nome": "Waterproof Car Rear Back Seat Cover Pet Dog Auto Protector Non-slip Hammock Mat",
+  "pid": "2089980764069797889",
+  "sku": "CJQT3074808",
+  "magazzino": "CN",
+  "costo_usd": 8.0,
+  "peso_g": 440.0,
   "varianti": 1,
   "spedizione": {
-   "errore": "nessuna tariffa"
+   "errore": "CN: nessuna tariffa"
   },
-  "immagine": "https://cf.cjdropshipping.com/17834688/a92dc6af-3af6-4f12-a9e0-adf57f6cea8c.jpg",
-  "inventario": []
+  "immagine": "https://cf.cjdropshipping.com/8b33f481-c4cf-4d89-82d1-1e10bb84ba71.jpg",
+  "scorte": {
+   "GB": 155
+  }
  },
  {
   "ricerca": "dog car seat cover hammock",
-  "nome": "3-in-1 Anti-Bark Dog Collar Training Collar Dog Trainer Vibration Neck Ring",
-  "pid": "2045389202720854018",
-  "sku": "CJSB2841531",
-  "magazzino": "DE",
-  "costo_usd": 15.18,
-  "peso_g": 86.0,
+  "nome": "Waterproof Car Rear Back Seat Cover Pet Dog Auto Protector Non-slip Hammock Mat",
+  "pid": "2042480394987536386",
+  "sku": "CJFU2827061",
+  "magazzino": "CN",
+  "costo_usd": 9.17,
+  "peso_g": 440.0,
   "varianti": 1,
   "spedizione": {
-   "errore": "nessuna tariffa"
+   "errore": "CN: nessuna tariffa"
   },
-  "immagine": "https://cf.cjdropshipping.com/ac542ac1-5128-4a46-bb8b-db4a5e45cd34.jpg",
-  "inventario": []
+  "immagine": "https://cf.cjdropshipping.com/09c4a365-56f7-463f-a15d-5b7d8690ff8e.jpg",
+  "scorte": {
+   "GB": 155
+  }
  },
  {
   "ricerca": "cat wall shelf",
-  "nome": "  wall shelf with drawer   wall shelf with drawer",
-  "pid": "1990444145691635713",
-  "sku": "CJFU2596559",
+  "nome": "wall shelf 124.5x18x60.5 cm, engineered wood,   wall shelf Sonoma oak",
+  "pid": "1990534762979438594",
+  "sku": "CJFU2599883",
   "magazzino": "DE",
-  "costo_usd": 37.74,
-  "peso_g": 1837.0,
-  "varianti": 2,
+  "costo_usd": 26.83,
+  "peso_g": 3606.0,
+  "varianti": 8,
   "spedizione": {
-   "errore": "nessuna tariffa"
+   "errore": "DE: nessuna tariffa; CN: nessuna tariffa"
   },
-  "immagine": "https://cf.cjdropshipping.com/17633376/a4a93b87-37c9-4026-9824-9fc1aef0ba7e.jpg",
-  "inventario": []
- },
- {
-  "ricerca": "cat wall shelf",
-  "nome": "  wall shelf with shelf, wall-mounted, 45 x  ",
-  "pid": "1990497125040037889",
-  "sku": "CJFU2598488",
-  "magazzino": "DE",
-  "costo_usd": 40.24,
-  "peso_g": 1950.0,
-  "varianti": 1,
-  "spedizione": {
-   "errore": "nessuna tariffa"
-  },
-  "immagine": "https://cf.cjdropshipping.com/17633376/d5c378d1-1d20-4545-9c3d-36c6d12b3e8d.jpg",
-  "inventario": []
+  "immagine": "https://cf.cjdropshipping.com/17633376/a52cf412-610e-4d52-a950-360e14be0edf.jpg",
+  "scorte": {
+   "DE": 200
+  }
  },
  {
   "ricerca": "cat wall shelf",
@@ -174,87 +137,123 @@
   "peso_g": 4128.0,
   "varianti": 9,
   "spedizione": {
-   "errore": "nessuna tariffa"
+   "errore": "DE: nessuna tariffa; CN: nessuna tariffa"
   },
   "immagine": "https://cf.cjdropshipping.com/17633376/92e036fc-d3bd-4e88-b24e-11157635886e.jpg",
-  "inventario": []
+  "scorte": {
+   "DE": 200
+  }
  },
  {
-  "ricerca": "pet carrier bag",
-  "nome": "No Pull Dog Harness Adjustable Reflective Nylon Pet Vest With Poop Bag Dispenser Set",
-  "pid": "2090372167973773314",
-  "sku": "CJPL3078274",
+  "ricerca": "cat wall shelf",
+  "nome": "  wall shelf with drawer   wall shelf with drawer",
+  "pid": "1990444145691635713",
+  "sku": "CJFU2596559",
   "magazzino": "DE",
-  "costo_usd": 16.0,
-  "peso_g": 340.0,
-  "varianti": 1,
-  "spedizione": {
-   "errore": "nessuna tariffa"
-  },
-  "immagine": "https://cf.cjdropshipping.com/91c041b0-3608-482e-b1d4-b2720bedd70a.jpg",
-  "inventario": []
- },
- {
-  "ricerca": "pet carrier bag",
-  "nome": "  8-Panel Pet Cage   8-Panel Pet Cage with Door   12-Panel Pet Cage",
-  "pid": "1990441367434997761",
-  "sku": "CJPG2596437",
-  "magazzino": "DE",
-  "costo_usd": 26.1,
-  "peso_g": 871.0,
-  "varianti": 6,
-  "spedizione": {
-   "errore": "nessuna tariffa"
-  },
-  "immagine": "https://cf.cjdropshipping.com/17633376/2ac5d9d0-e96e-4e2a-b51d-cbceed29bf7e.jpg",
-  "inventario": []
- },
- {
-  "ricerca": "pet carrier bag",
-  "nome": "Pet Plant Protection Spray",
-  "pid": "2069706798081683458",
-  "sku": "CJSP2953011",
-  "magazzino": "DE",
-  "costo_usd": 8.5,
-  "peso_g": 150.0,
-  "varianti": 1,
-  "spedizione": {
-   "corriere": "DHL DE to Multi-Region",
-   "prezzo_usd": 6.84,
-   "giorni": "7-14"
-  },
-  "immagine": "https://cf.cjdropshipping.com/785c3279-91bf-45bc-bfce-52b08e21a856.jpg",
-  "inventario": []
- },
- {
-  "ricerca": "orthopedic dog bed",
-  "nome": "  dog bed 70x   dog bed 70x",
-  "pid": "1990441468589027329",
-  "sku": "CJFU2596446",
-  "magazzino": "DE",
-  "costo_usd": 47.72,
-  "peso_g": 2722.0,
+  "costo_usd": 37.74,
+  "peso_g": 1837.0,
   "varianti": 2,
   "spedizione": {
-   "errore": "nessuna tariffa"
+   "errore": "DE: nessuna tariffa; CN: nessuna tariffa"
   },
-  "immagine": "https://cf.cjdropshipping.com/17633376/a61595b5-939b-4a1e-b6d8-e46277d103c8.jpg",
-  "inventario": []
+  "immagine": "https://cf.cjdropshipping.com/17633376/a4a93b87-37c9-4026-9824-9fc1aef0ba7e.jpg",
+  "scorte": {
+   "DE": 200
+  }
+ },
+ {
+  "ricerca": "pet carrier bag",
+  "nome": "Shoulder Pet Bag Outdoor Carrier Messenger Bag Pet Backpack",
+  "pid": "2BA016A0-CCF4-48F3-A26F-31A10BBA87B7",
+  "sku": "CJJJCWGY00168",
+  "magazzino": "CN",
+  "costo_usd": 4.2,
+  "peso_g": 367.0,
+  "varianti": 1,
+  "spedizione": {
+   "da": "CN",
+   "corriere": "YunExpress Ordinary",
+   "prezzo_usd": 8.23,
+   "giorni": "8-15"
+  },
+  "immagine": "https://cf.cjdropshipping.com/15283008/1101806472525.png",
+  "scorte": {
+   "CN": 11267
+  }
+ },
+ {
+  "ricerca": "pet carrier bag",
+  "nome": "Portable Pet Mesh Carrier Bag Pet Travel Bags",
+  "pid": "1379004349228912640",
+  "sku": "CJNS1066951",
+  "magazzino": "CN",
+  "costo_usd": 3.66,
+  "peso_g": 620.0,
+  "varianti": 12,
+  "spedizione": {
+   "da": "CN",
+   "corriere": "YunExpress Ordinary",
+   "prezzo_usd": 10.43,
+   "giorni": "8-15"
+  },
+  "immagine": "https://cf.cjdropshipping.com/1617614885550.jpg",
+  "scorte": {
+   "CN": 40000
+  }
+ },
+ {
+  "ricerca": "pet carrier bag",
+  "nome": "Cat Carrier, Small Pet Backpack, Pet Travel Bag",
+  "pid": "2608200654201629600",
+  "sku": "CJYD3077656",
+  "magazzino": "CN",
+  "costo_usd": 5.51,
+  "peso_g": 1200.0,
+  "varianti": 4,
+  "spedizione": {
+   "da": "CN",
+   "corriere": "YunExpress Ordinary",
+   "prezzo_usd": 15.45,
+   "giorni": "8-15"
+  },
+  "immagine": "https://oss-cf.cjdropshipping.com/product/2026/08/20/09/b7740554-36d0-48a3-b3c8-f75b401f5eb5_fine.jpeg",
+  "scorte": {
+   "CN": 7262
+  }
  },
  {
   "ricerca": "orthopedic dog bed",
-  "nome": "  Dog Bed 90x Velvet   Dog Bed 90x Velvet",
-  "pid": "1990441435445637121",
-  "sku": "CJFU2596443",
+  "nome": "  dog bed size XL   dog bed size XXL",
+  "pid": "1990440382008303618",
+  "sku": "CJFU2596399",
   "magazzino": "DE",
-  "costo_usd": 84.11,
-  "peso_g": 4286.0,
-  "varianti": 1,
+  "costo_usd": 20.17,
+  "peso_g": 635.0,
+  "varianti": 2,
   "spedizione": {
-   "errore": "nessuna tariffa"
+   "errore": "DE: nessuna tariffa; CN: nessuna tariffa"
   },
-  "immagine": "https://cf.cjdropshipping.com/17633376/c3fa6efb-7b4f-4361-acf2-64af7b4954d3.jpg",
-  "inventario": []
+  "immagine": "https://cf.cjdropshipping.com/17633376/3db022f4-0cb2-4a02-b1e5-34b45938dabc.jpg",
+  "scorte": {
+   "DE": 65
+  }
+ },
+ {
+  "ricerca": "orthopedic dog bed",
+  "nome": "  Dog Bed 61x Solid Pine Wood   Dog Bed 71x",
+  "pid": "1990524534653235202",
+  "sku": "CJFU2599479",
+  "magazzino": "DE",
+  "costo_usd": 35.74,
+  "peso_g": 2572.0,
+  "varianti": 2,
+  "spedizione": {
+   "errore": "DE: nessuna tariffa; CN: nessuna tariffa"
+  },
+  "immagine": "https://cf.cjdropshipping.com/17633376/d7b80607-c14c-47dd-846a-e3f9b9b025f9.jpg",
+  "scorte": {
+   "DE": 68
+  }
  },
  {
   "ricerca": "orthopedic dog bed",
@@ -266,85 +265,72 @@
   "peso_g": 1687.0,
   "varianti": 5,
   "spedizione": {
-   "errore": "nessuna tariffa"
+   "errore": "DE: nessuna tariffa; CN: nessuna tariffa"
   },
   "immagine": "https://cf.cjdropshipping.com/17633376/17cecba1-eaf5-4747-8b1f-b7e071c1fd18.jpg",
-  "inventario": []
+  "scorte": {
+   "DE": 198
+  }
  },
  {
   "ricerca": "automatic pet feeder",
-  "nome": "Set Of 4 Titmouse Suet Holder Bird Feeder Station For Hanging, Metal Bird Feeder With S-Shaped Hooks, Feeder For Wild Birds, Garden, Diameter 7 Cm, Black",
-  "pid": "2077972927633842177",
-  "sku": "CJBF2989676",
-  "magazzino": "DE",
-  "costo_usd": 5.47,
-  "peso_g": 245.0,
-  "varianti": 1,
+  "nome": "Pet Water Feeder Cat Automatic Pet Feeder",
+  "pid": "1561256561761333248",
+  "sku": "CJYD1544909",
+  "magazzino": "CN",
+  "costo_usd": 1.78,
+  "peso_g": 390.0,
+  "varianti": 8,
   "spedizione": {
-   "errore": "nessuna tariffa"
+   "da": "CN",
+   "corriere": "CJPacket Eub",
+   "prezzo_usd": 11.14,
+   "giorni": "12-50"
   },
-  "immagine": "https://cf.cjdropshipping.com/17842464/797ae826-017f-4c4e-9ecf-c685bf10f056.jpg",
-  "inventario": []
+  "immagine": "https://cf.cjdropshipping.com/38ea8d41-29a9-4d3f-b85f-d90449bdfb05.jpg",
+  "scorte": {
+   "CN": 11864
+  }
  },
  {
   "ricerca": "automatic pet feeder",
-  "nome": "Acrylic Bird Feeder, Transparent Feeder For Birds In The Garden, On The Balcony, Or On The Patio—Party Accessory Set",
-  "pid": "2076518167235039235",
-  "sku": "CJPG2981768",
-  "magazzino": "DE",
-  "costo_usd": 8.93,
-  "peso_g": 485.0,
+  "nome": "Pet Automatic Feeder",
+  "pid": "487DDF29-433B-4590-8B17-B2E67B8DA075",
+  "sku": "CJJJCWGY03426",
+  "magazzino": "CN",
+  "costo_usd": 13.74,
+  "peso_g": 774.0,
   "varianti": 1,
   "spedizione": {
-   "errore": "nessuna tariffa"
+   "da": "CN",
+   "corriere": "CJPacket Liquid Line",
+   "prezzo_usd": 13.87,
+   "giorni": "8-10"
   },
-  "immagine": "https://cf.cjdropshipping.com/17839008/66870551-195e-4d77-afb3-06ad63fe4058.jpg",
-  "inventario": []
+  "immagine": "https://cf.cjdropshipping.com/2044/817515212307.jpg",
+  "scorte": {
+   "CN": 20000
+  }
  },
  {
   "ricerca": "automatic pet feeder",
-  "nome": "  8-Panel Pet Cage   8-Panel Pet Cage with Door   12-Panel Pet Cage",
-  "pid": "1990441367434997761",
-  "sku": "CJPG2596437",
-  "magazzino": "DE",
-  "costo_usd": 26.1,
-  "peso_g": 871.0,
-  "varianti": 6,
+  "nome": "Automatic pet feeder",
+  "pid": "0FA830E0-7B6A-40EE-815B-8AEC4371C2CF",
+  "sku": "CJJJCWGY01857",
+  "magazzino": "CN",
+  "costo_usd": 21.01,
+  "peso_g": 1700.0,
+  "varianti": 4,
   "spedizione": {
-   "errore": "nessuna tariffa"
+   "da": "CN",
+   "corriere": "CJPacket Sensitive Oversize Line",
+   "prezzo_usd": 41.07,
+   "giorni": "8-16"
   },
-  "immagine": "https://cf.cjdropshipping.com/17633376/2ac5d9d0-e96e-4e2a-b51d-cbceed29bf7e.jpg",
-  "inventario": []
- },
- {
-  "ricerca": "cat tree",
-  "nome": "Cat Tree In Cactus Shape  90 Cm High Cat Tree With Thickened Sisal Stems And Tilt Protection, Green Design Cat Tree, Cat Scratching Post, Cat Scratching Post, Cat Tree, Cat Tree Flat, Cat Tree Small",
-  "pid": "2067176542250237954",
-  "sku": "CJFU2939566",
-  "magazzino": "DE",
-  "costo_usd": 53.2,
-  "peso_g": 7900.0,
-  "varianti": 1,
-  "spedizione": {
-   "errore": "nessuna tariffa"
-  },
-  "immagine": "https://cf.cjdropshipping.com/17816544/98e3797f-220c-4f09-8733-83c9544193e2.jpg",
-  "inventario": []
- },
- {
-  "ricerca": "cat tree",
-  "nome": "  Cat Tree 45.5x Solid Pine Wood",
-  "pid": "1990525975941918721",
-  "sku": "CJTC2599539",
-  "magazzino": "DE",
-  "costo_usd": 65.92,
-  "peso_g": 3175.0,
-  "varianti": 1,
-  "spedizione": {
-   "errore": "nessuna tariffa"
-  },
-  "immagine": "https://cf.cjdropshipping.com/17633376/d196c233-5ab1-4bc5-b8a8-1903a653104d.jpg",
-  "inventario": []
+  "immagine": "https://cf.cjdropshipping.com/20200602/1750000281613.png",
+  "scorte": {
+   "CN": 14984
+  }
  },
  {
   "ricerca": "cat tree",
@@ -356,9 +342,45 @@
   "peso_g": 1120.0,
   "varianti": 1,
   "spedizione": {
-   "errore": "nessuna tariffa"
+   "errore": "DE: nessuna tariffa; CN: nessuna tariffa"
   },
   "immagine": "https://cf.cjdropshipping.com/17634240/0958a79f-700c-4d9b-8030-362baa2c497f.jpg",
-  "inventario": []
+  "scorte": {
+   "DE": 200
+  }
+ },
+ {
+  "ricerca": "cat tree",
+  "nome": "  Cat Tree with Wooden Legs 41 cm Seagrass",
+  "pid": "1990691641781440513",
+  "sku": "CJTC2602980",
+  "magazzino": "DE",
+  "costo_usd": 35.2,
+  "peso_g": 1370.0,
+  "varianti": 1,
+  "spedizione": {
+   "errore": "DE: nessuna tariffa; CN: nessuna tariffa"
+  },
+  "immagine": "https://cf.cjdropshipping.com/17634240/421acc91-848b-465a-8fd8-098648e81d0a.jpg",
+  "scorte": {
+   "DE": 138
+  }
+ },
+ {
+  "ricerca": "cat tree",
+  "nome": "Cat Tree In Cactus Shape  90 Cm High Cat Tree With Thickened Sisal Stems And Tilt Protection, Green Design Cat Tree, Cat Scratching Post, Cat Scratching Post, Cat Tree, Cat Tree Flat, Cat Tree Small",
+  "pid": "2067176542250237954",
+  "sku": "CJFU2939566",
+  "magazzino": "DE",
+  "costo_usd": 53.2,
+  "peso_g": 7900.0,
+  "varianti": 1,
+  "spedizione": {
+   "errore": "DE: nessuna tariffa; CN: nessuna tariffa"
+  },
+  "immagine": "https://cf.cjdropshipping.com/17816544/98e3797f-220c-4f09-8733-83c9544193e2.jpg",
+  "scorte": {
+   "DE": 5
+  }
  }
 ]
