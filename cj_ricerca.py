@@ -2,8 +2,9 @@
 
 Legge le parole chiave da cj/richieste.txt (una per riga) oppure dalla variabile
 RICERCHE (separate da ";"). Per ogni parola cerca su CJ i prodotti con
-magazzino in Europa e, se non ce ne sono, quelli dalla Cina; per i primi
-risultati calcola la spedizione verso l'Italia. Scrive cj/risultati.md e
+magazzino in Europa e, se non ce ne sono, quelli dalla Cina; scarta i
+risultati che non c'entrano con la ricerca, legge le scorte per magazzino e
+calcola la spedizione verso l'Italia (prima da un magazzino UE, poi dalla Cina). Scrive cj/risultati.md e
 cj/risultati.json. Serve il segreto CJ_API_KEY.
 """
 import json
@@ -17,6 +18,7 @@ import requests
 BASE = "https://developers.cjdropshipping.com/api2.0/v1"
 PAESI_UE = ["DE", "FR", "ES", "IT", "PL", "CZ", "NL", "BE", "HU"]
 PER_RICERCA = int(os.environ.get("PER_RICERCA", "3"))
+MIN_PERTINENZA = float(os.environ.get("MIN_PERTINENZA", "0.6"))
 # Commissione e cambio sono stime: servono solo per ordinare i risultati.
 CAMBIO_USD_EUR = float(os.environ.get("CAMBIO_USD_EUR", "0.92"))
 
@@ -64,19 +66,39 @@ def dettaglio(tok, pid):
     return chiama("GET", "product/query", tok, params={"pid": pid}) or {}
 
 
-def spedizione(tok, vid, da):
-    corpo = {"startCountryCode": da, "endCountryCode": "IT",
-             "products": [{"vid": vid, "quantity": 1}]}
+def scorte(tok, vid):
+    """Pezzi disponibili per paese del magazzino (vuoto se CJ non risponde)."""
     try:
-        opzioni = chiama("POST", "logistic/freightCalculate", tok, json=corpo) or []
-    except Exception as e:  # noqa: BLE001 - un prodotto senza tariffa non ferma la ricerca
-        return {"errore": str(e)[:200]}
-    if not opzioni:
-        return {"errore": "nessuna tariffa"}
-    migliore = min(opzioni, key=lambda o: float(o.get("logisticPrice") or 1e9))
-    return {"corriere": migliore.get("logisticName"),
-            "prezzo_usd": float(migliore.get("logisticPrice") or 0),
-            "giorni": migliore.get("logisticAging")}
+        dati = chiama("GET", "product/stock/queryByVid", tok, params={"vid": vid}) or []
+    except Exception:  # noqa: BLE001
+        return {}
+    out = {}
+    for i in dati if isinstance(dati, list) else []:
+        paese = i.get("countryCode") or i.get("areaEn")
+        pezzi = i.get("totalInventoryNum", i.get("storageNum", i.get("totalInventory")))
+        if paese:
+            out[paese] = pezzi
+    return out
+
+
+def spedizione(tok, vid, partenze):
+    """Tariffa più economica verso l'Italia, provando le partenze in ordine."""
+    errori = []
+    for da in partenze:
+        corpo = {"startCountryCode": da, "endCountryCode": "IT",
+                 "products": [{"vid": vid, "quantity": 1}]}
+        try:
+            opzioni = chiama("POST", "logistic/freightCalculate", tok, json=corpo) or []
+        except Exception as e:  # noqa: BLE001 - un prodotto senza tariffa non ferma la ricerca
+            errori.append(f"{da}: {str(e)[:120]}")
+            continue
+        if opzioni:
+            migliore = min(opzioni, key=lambda o: float(o.get("logisticPrice") or 1e9))
+            return {"da": da, "corriere": migliore.get("logisticName"),
+                    "prezzo_usd": float(migliore.get("logisticPrice") or 0),
+                    "giorni": migliore.get("logisticAging")}
+        errori.append(f"{da}: nessuna tariffa")
+    return {"errore": "; ".join(errori) or "nessuna tariffa"}
 
 
 def _numero(v):
@@ -86,44 +108,51 @@ def _numero(v):
         return None
 
 
+def _pertinenza(parola, nome):
+    """Quota delle parole della ricerca presenti nel nome del prodotto."""
+    chiavi = [w for w in parola.lower().split() if len(w) > 2]
+    nome = (nome or "").lower()
+    return sum(1 for w in chiavi if w in nome) / max(len(chiavi), 1)
+
+
 def analizza(tok, parola):
-    trovati = []
-    for paese in PAESI_UE:
+    trovati = {}
+    for paese in PAESI_UE + [None]:
         for p in cerca(tok, parola, paese):
-            trovati.append((paese, p))
-        if len(trovati) >= PER_RICERCA:
+            pid = p.get("id")
+            if pid and pid not in trovati and _pertinenza(parola, p.get("nameEn")) >= MIN_PERTINENZA:
+                trovati[pid] = p
+        if len(trovati) >= PER_RICERCA * 3:
             break
-    if not trovati:
-        trovati = [("CN", p) for p in cerca(tok, parola)]
+    candidati = sorted(trovati.values(), key=lambda p: -_pertinenza(parola, p.get("nameEn")))
     righe = []
-    visti = set()
-    for paese, p in trovati:
-        pid = p.get("id")
-        if not pid or pid in visti:
-            continue
-        visti.add(pid)
-        d = dettaglio(tok, pid)
+    for p in candidati[:PER_RICERCA * 2]:
+        d = dettaglio(tok, p["id"])
         varianti = d.get("variants") or []
         v = varianti[0] if varianti else {}
+        if not v.get("vid"):
+            continue
+        stock = scorte(tok, v["vid"])
+        ue = [c for c in PAESI_UE if (stock.get(c) or 0) > 0]
+        sped = spedizione(tok, v["vid"], ue + ["CN"])
         costo = _numero(v.get("variantSellPrice") or p.get("sellPrice") or p.get("nowPrice"))
-        sped = spedizione(tok, v.get("vid"), paese) if v.get("vid") else {"errore": "nessuna variante"}
         righe.append({
             "ricerca": parola,
             "nome": p.get("nameEn"),
-            "pid": pid,
+            "pid": p["id"],
             "sku": p.get("sku"),
-            "magazzino": paese,
+            "magazzino": sped.get("da") or (ue[0] if ue else "CN"),
             "costo_usd": costo,
             "peso_g": v.get("variantWeight"),
             "varianti": len(varianti),
             "spedizione": sped,
             "immagine": p.get("bigImage"),
-            "inventario": [{"paese": i.get("countryCode"), "pezzi": i.get("totalInventory")}
-                           for i in (d.get("inventories") or [])],
+            "scorte": stock,
         })
-        if len(righe) >= PER_RICERCA:
-            break
-    return righe
+    # Prima chi spedisce da un magazzino europeo, poi i più economici.
+    righe.sort(key=lambda r: (r["magazzino"] not in PAESI_UE, "prezzo_usd" not in r["spedizione"],
+                              (r["costo_usd"] or 0) + (r["spedizione"].get("prezzo_usd") or 0)))
+    return righe[:PER_RICERCA]
 
 
 def tabella(risultati):
