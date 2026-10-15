@@ -1,0 +1,9 @@
+# Una ricerca per riga (in inglese, come su CJ). Le righe con # sono ignorate.
+cat water fountain
+dog hair clipper
+dog car seat cover hammock
+cat wall shelf
+pet carrier bag
+orthopedic dog bed
+automatic pet feeder
+cat tree
