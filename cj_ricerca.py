@@ -170,10 +170,44 @@ def tabella(risultati):
     return "\n".join(out) + "\n"
 
 
+def varianti(tok, pids):
+    """Tutte le varianti dei prodotti indicati, con prezzo, scorte e spedizione dalla Cina."""
+    out = [f"# Varianti CJ ({datetime.now(timezone.utc):%Y-%m-%d %H:%M} UTC)", "",
+           "Costi e spedizioni in dollari, letti dall'API CJ.", ""]
+    for pid in pids:
+        try:
+            d = dettaglio(tok, pid)
+        except Exception as e:  # noqa: BLE001
+            out += [f"## {pid}", "", f"Errore: {e}", ""]
+            continue
+        out += [f"## {d.get('productNameEn', '')} ({d.get('productSku', '')})", "",
+                "| Variante | Chiave | Costo $ | Peso g | Scorte | Spedizione IT $ | Giorni | SKU variante |",
+                "|---|---|---|---|---|---|---|---|"]
+        for v in d.get("variants") or []:
+            vid = v.get("vid")
+            stock = scorte(tok, vid) if vid else {}
+            ue = [c for c in PAESI_UE if (stock.get(c) or 0) > 0]
+            sped = spedizione(tok, vid, ue + ["CN"]) if vid else {}
+            nome = (v.get("variantNameEn") or "").replace("|", "/")
+            out.append(f"| {nome} | {v.get('variantKey', '')} | {v.get('variantSellPrice', '')} | "
+                       f"{v.get('variantWeight', '')} | {stock or 'n.d.'} | "
+                       f"{sped.get('prezzo_usd', sped.get('errore', 'n.d.'))} | {sped.get('giorni', '')} | "
+                       f"{v.get('variantSku', '')} |")
+        testo = " ".join(str(d.get(k) or "") for k in ("description", "productProEn", "materialNameEn"))
+        spine = [w for w in ("EU plug", "EU Plug", "US plug", "UK plug", "USB", "CE") if w in testo]
+        out += ["", f"Nella scheda CJ compaiono: {', '.join(spine) or 'nessuna indicazione su spina o CE'}.", ""]
+    with open("cj/varianti.md", "w", encoding="utf-8") as f:
+        f.write("\n".join(out) + "\n")
+    print(f"[cj] varianti di {len(pids)} prodotti in cj/varianti.md")
+
+
 def main():
     chiave = os.environ.get("CJ_API_KEY")
     if not chiave:
         sys.exit("Manca il segreto CJ_API_KEY")
+    if os.environ.get("VARIANTI"):
+        varianti(token(chiave), [p.strip() for p in os.environ["VARIANTI"].split(";") if p.strip()])
+        return
     if os.environ.get("RICERCHE"):
         parole = [p.strip() for p in os.environ["RICERCHE"].split(";") if p.strip()]
     else:
