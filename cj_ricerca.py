@@ -196,6 +196,12 @@ def varianti(tok, pids):
         testo = " ".join(str(d.get(k) or "") for k in ("description", "productProEn", "materialNameEn"))
         spine = [w for w in ("EU plug", "EU Plug", "US plug", "UK plug", "USB", "CE") if w in testo]
         out += ["", f"Nella scheda CJ compaiono: {', '.join(spine) or 'nessuna indicazione su spina o CE'}.", ""]
+        foto = d.get("productImageSet") or []
+        if isinstance(foto, str):
+            foto = [u for u in foto.strip("[]").replace('"', "").split(",") if u.strip()]
+        foto += [v.get("variantImage") for v in d.get("variants") or [] if v.get("variantImage")]
+        foto = list(dict.fromkeys(u.strip() for u in foto if u))
+        out += [f"Foto ({len(foto)}):", ""] + [f"- {u}" for u in foto] + [""]
     with open("cj/varianti.md", "w", encoding="utf-8") as f:
         f.write("\n".join(out) + "\n")
     print(f"[cj] varianti di {len(pids)} prodotti in cj/varianti.md")
