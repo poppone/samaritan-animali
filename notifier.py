@@ -81,11 +81,13 @@ def notifica_video(dati, percorso_video, didascalia_tiktok):
 
     e = html.escape
     riepilogo = (
-        f"<b>{e(config.NOME_NEGOZIO)} - video TikTok pronto</b>\n\n"
+        "<b>DA PUBBLICARE OGGI su TikTok</b>\n"
+        f"<b>{e(config.NOME_NEGOZIO)} - video pronto</b>\n\n"
         f"<b>{e(dati['titolo'])}</b>\n"
         f"Prodotto: {e(dati['prodotto']['titolo'])}\n"
         f"Formato: <code>{e(dati['stile'])}</code>\n\n"
-        "Didascalia nel messaggio successivo (tocca per copiarla)."
+        "Scarica il video, tocca la didascalia nel messaggio successivo "
+        "per copiarla e pubblica."
     )
     ok_video = invia_video(percorso_video, riepilogo)
     if not ok_video:
