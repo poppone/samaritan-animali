@@ -166,3 +166,26 @@ class TestAggiornaUltimaVoce:
         monkeypatch.setattr(brain.config, "FILE_CRONOLOGIA", str(f))
         brain.aggiorna_ultima_voce({})
         assert not f.exists()
+
+
+class TestPianoSettimana:
+    # domenica 25/10/2026 alle 17:00 UTC (18:00 italiane, ora solare)
+    DOMENICA = 1792947600
+
+    def _voce(self, ore_fa, titolo):
+        return {"timestamp": self.DOMENICA - ore_fa * 3600, "titolo": titolo}
+
+    def test_due_al_giorno_dal_lunedi_in_ordine(self):
+        cron = [self._voce(10, "C"), self._voce(150, "A"), self._voce(100, "B")]
+        righe = brain.piano_settimana(cron, self.DOMENICA)
+        assert righe == ["1. lunedì 26/10 12:30 - A",
+                         "2. lunedì 26/10 19:00 - B",
+                         "3. martedì 27/10 12:30 - C"]
+
+    def test_esclude_i_video_vecchi_e_quelli_futuri(self):
+        cron = [self._voce(169, "vecchio"), self._voce(-1, "dopo"), "voce stringa",
+                self._voce(1, "ok")]
+        assert brain.piano_settimana(cron, self.DOMENICA) == ["1. lunedì 26/10 12:30 - ok"]
+
+    def test_settimana_vuota(self):
+        assert brain.piano_settimana([], self.DOMENICA) == []

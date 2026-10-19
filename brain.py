@@ -8,6 +8,7 @@ script e didascalia, e valida il risultato.
   - Se il modello apre con un saluto lo script viene rifiutato e rigenerato.
 """
 import os
+import datetime
 import json
 import random
 import time
@@ -107,6 +108,35 @@ def carica_cronologia():
         return data if isinstance(data, list) else []
     except Exception:
         return []
+
+
+GIORNI = ["lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato", "domenica"]
+ORARI_PUBBLICAZIONE = ["12:30", "19:00"]
+
+
+def piano_settimana(cronologia, adesso=None):
+    """Righe "giorno ora - titolo" per i video delle ultime 168 ore.
+
+    La finestra va a ore e non a date: un video della domenica fatto dopo il
+    riepilogo (GitHub fa partire le run in ritardo) finisce in quello dopo.
+    I video escono in ordine di produzione a partire dal lunedì successivo,
+    due al giorno (ORARI_PUBBLICAZIONE); se sono di più, si va avanti con i
+    giorni successivi.
+    """
+    adesso = adesso or time.time()
+    oggi = datetime.date.fromtimestamp(adesso)
+    voci = [v for v in cronologia
+            if isinstance(v, dict)
+            and adesso - 7 * 86400 < int(v.get("timestamp") or 0) <= adesso]
+    voci.sort(key=lambda v: int(v.get("timestamp") or 0))
+    lunedi = oggi + datetime.timedelta(days=(7 - oggi.weekday()) % 7 or 7)
+    righe = []
+    for i, v in enumerate(voci):
+        giorno = lunedi + datetime.timedelta(days=i // len(ORARI_PUBBLICAZIONE))
+        ora = ORARI_PUBBLICAZIONE[i % len(ORARI_PUBBLICAZIONE)]
+        righe.append(f"{i + 1}. {GIORNI[giorno.weekday()]} {giorno.day}/{giorno.month} "
+                     f"{ora} - {v.get('titolo', v.get('handle', ''))}")
+    return righe
 
 
 def salva_in_cronologia(dati):

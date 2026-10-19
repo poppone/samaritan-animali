@@ -10,13 +10,15 @@ La pubblicazione su TikTok resta manuale.
 Uso:
     python main.py                                   # prodotto in rotazione
     python main.py pettorina-anti-tiro-riflettente   # prodotto specifico (handle)
+    python main.py --riepilogo                       # domenica: piano della settimana
 """
 import sys
 import os
 import traceback
 
 import config
-from brain import genera_script_zampaviva, componi_didascalia, aggiorna_ultima_voce
+from brain import (genera_script_zampaviva, componi_didascalia, aggiorna_ultima_voce,
+                   carica_cronologia, piano_settimana)
 from maker import assembla_video_finale
 import notifier
 import copia_pubblica
@@ -73,6 +75,10 @@ def esegui_pipeline(richiesto=None):
 
 if __name__ == "__main__":
     richiesto = sys.argv[1] if len(sys.argv) > 1 else None
+    if richiesto == "--riepilogo":
+        righe = piano_settimana(carica_cronologia())
+        print("\n".join(righe) or "Nessun video negli ultimi 7 giorni.")
+        sys.exit(0 if notifier.notifica_riepilogo(righe) or not config.TELEGRAM_ATTIVO else 1)
     try:
         esegui_pipeline(richiesto)
     except Exception:
